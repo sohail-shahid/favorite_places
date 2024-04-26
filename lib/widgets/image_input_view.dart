@@ -16,8 +16,11 @@ class ImageInputView extends ConsumerStatefulWidget {
 class _ImageInputViewState extends ConsumerState<ImageInputView> {
   void _onTakeImage() async {
     final imagePicker = ImagePicker();
+    ImageSource source = Theme.of(context).platform == TargetPlatform.iOS
+        ? ImageSource.gallery
+        : ImageSource.camera;
     final selectedImageFile = await imagePicker.pickImage(
-      source: ImageSource.gallery,
+      source: source,
       maxWidth: 600,
     );
     if (selectedImageFile == null) {
