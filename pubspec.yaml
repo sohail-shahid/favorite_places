@@ -1,5 +1,5 @@
 name: favorite_places
-description: "A new Flutter project."
+description: 'A new Flutter project.'
 publish_to: 'none'
 version: 0.1.0
 
@@ -9,7 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_riverpod: ^2.5.1
   google_fonts: ^6.2.1
+  uuid: ^4.4.0
+  image_picker: ^1.1.0
+  location: ^6.0.1
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:google_fonts/google_fonts.dart';
+import 'package:favorite_places/screens/place_list_screen.dart';
 
 final lightColorScheme = ColorScheme.fromSeed(
   seedColor: Colors.white,
@@ -57,7 +60,11 @@ final darkTheme = ThemeData.dark().copyWith(
 );
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    const ProviderScope(
+      child: MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -68,15 +75,8 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: ThemeMode.dark,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Favorite Places'),
-        ),
-        body: const Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      themeMode: ThemeMode.light,
+      home: const PlaceListScreen(),
     );
   }
 }
