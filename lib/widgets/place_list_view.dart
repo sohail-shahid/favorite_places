@@ -28,6 +28,7 @@ class PlaceListView extends StatelessWidget {
             title: Text(
               placeList[index].name,
             ),
+            subtitle: Text(placeList[index].locationModel.name),
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
