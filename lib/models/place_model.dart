@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:uuid/uuid.dart';
 
 const uuid = Uuid();
-const apiKey = 'API_KEY';
+const apiKey = 'API_Key';
 
 class PlaceLocationModel {
   const PlaceLocationModel({
@@ -24,9 +24,10 @@ class PlaceModel {
     required this.name,
     required this.image,
     required this.locationModel,
-  }) : id = uuid.v4();
+    String? id,
+  }) : id = id ?? uuid.v4();
   final String id;
   final String name;
-  final File image;
+  File image;
   final PlaceLocationModel locationModel;
 }

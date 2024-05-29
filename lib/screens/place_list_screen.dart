@@ -5,9 +5,16 @@ import 'package:favorite_places/providers/place_list_provider.dart';
 import 'package:favorite_places/screens/add_new_place_screen.dart';
 import 'package:favorite_places/widgets/place_list_view.dart';
 
-class PlaceListScreen extends ConsumerWidget {
+class PlaceListScreen extends ConsumerStatefulWidget {
   const PlaceListScreen({super.key});
+  @override
+  ConsumerState<PlaceListScreen> createState() {
+    return _PlaceListScreenState();
+  }
+}
 
+class _PlaceListScreenState extends ConsumerState<PlaceListScreen> {
+  late Future<void> _loadPlacesFuture;
   void _onAddNewPlaceButtonPressed(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -17,7 +24,13 @@ class PlaceListScreen extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  void initState() {
+    super.initState();
+    _loadPlacesFuture = ref.read(placeListProvider.notifier).loadPlaces();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     var placeList = ref.watch(placeListProvider);
     print(
       placeList.toString(),
@@ -36,8 +49,17 @@ class PlaceListScreen extends ConsumerWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: PlaceListView(
-          placeList: placeList,
+        child: FutureBuilder(
+          future: _loadPlacesFuture,
+          builder: (context, snapshot) {
+            return snapshot.connectionState == ConnectionState.waiting
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : PlaceListView(
+                    placeList: placeList,
+                  );
+          },
         ),
       ),
     );

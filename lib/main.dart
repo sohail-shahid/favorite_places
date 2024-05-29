@@ -47,7 +47,7 @@ final lightTheme = ThemeData.light().copyWith(
   appBarTheme: const AppBarTheme().copyWith(
     backgroundColor: Colors.white,
   ),
-  scaffoldBackgroundColor: lightColorScheme.background,
+  scaffoldBackgroundColor: lightColorScheme.surface,
 );
 
 final darkTheme = ThemeData.dark().copyWith(
@@ -56,7 +56,7 @@ final darkTheme = ThemeData.dark().copyWith(
   appBarTheme: const AppBarTheme().copyWith(
     backgroundColor: Colors.black,
   ),
-  scaffoldBackgroundColor: darkColorScheme.background,
+  scaffoldBackgroundColor: darkColorScheme.surface,
 );
 
 void main() {

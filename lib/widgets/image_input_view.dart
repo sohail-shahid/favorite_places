@@ -55,7 +55,7 @@ class _ImageInputViewState extends ConsumerState<ImageInputView> {
         alignment: AlignmentDirectional.center,
         decoration: BoxDecoration(
           border: Border.all(
-              width: 1, color: Theme.of(context).colorScheme.onBackground),
+              width: 1, color: Theme.of(context).colorScheme.onSurface),
         ),
         child: child);
   }
